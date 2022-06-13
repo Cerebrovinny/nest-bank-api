@@ -14,12 +14,12 @@ import { Response } from 'express';
 import { BalanceService } from 'src/balance/balance.service';
 
 
-@ApiTags('reset')
+@ApiTags('Reset')
 @Controller()
 export class ResetController {
     private balanceService: BalanceService = BalanceService.getInstance();
 
-    @Post('/reset')
+    @Post()
     @ApiOperation({ summary: 'Reset the balance' })
     public async reset(@Res() res: Response) {
         await this.balanceService.reset();
