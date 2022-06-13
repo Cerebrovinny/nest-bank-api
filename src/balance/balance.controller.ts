@@ -7,16 +7,16 @@ import { Balance } from './balance.interface';
 @ApiTags('Balance')
 @Controller()
 export class BalanceController {
-    constructor(private readonly balanceService: BalanceService) {}
+    private balanceService: BalanceService = BalanceService.getInstance()
 
     @Get()
     @ApiOperation({ summary: 'Get balance' })
-    public async find(@Query('account_id') accountId: number, @Res() res: Response) {
-        const balance: Balance = await this.balanceService.find(accountId);
+    public async findAccountBalance(@Query('account_id') account_id: string, @Res() res: Response) {
+        const balance: Balance = this.balanceService.find(account_id);
         if(balance) {
             res.status(HttpStatus.OK).json(balance.amount);
         } else {
-            res.status(HttpStatus.NOT_FOUND).json({ message: 'Account not found' });
+            res.status(HttpStatus.NOT_FOUND).json(0);
         }
     }
 }
