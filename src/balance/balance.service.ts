@@ -31,23 +31,23 @@ export class BalanceService {
         if(this.find(id)) {
             this.changeAmount(id, amount, 1);
         } else {
-            this.balance.push({ 'id': id, 'amount': amount });
+            this.balance.push({ 'id': id, amount });
         }
 
-        return { 'destination': this.find(id) };
+        return { 'destination':  this.find(id) };
     }
     
     withdraw(id: string, amount: number) {
         this.changeAmount(id, amount, -1);
 
-        return { 'origin': this.find(id) };
+        return { 'origin':  this.find(id) };
     }
 
     transfer(origin: string, destination: string, amount: number) {
         this.changeAmount(origin, amount, -1);
         this.deposit(destination, amount);
 
-        return { 'origin': this.find(origin), 'destination': this.find(destination) };
+        return { 'origin':  this.find(origin), 'destination':  this.find(destination) };
     }
 
 }
