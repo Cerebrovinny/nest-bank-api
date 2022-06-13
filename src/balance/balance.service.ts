@@ -13,34 +13,34 @@ export class BalanceService {
     }
 
     find(id: number): Balance {
-        return this.balance.find(event => event.account_id === id);
+        return this.balance.find(event => event.id === id);
     }
 
     reset() {
         this.balance = [];
     }
 
-    changeAmount(account_id: number, amount: number, type: number) {
+    changeAmount(id: number, amount: number, type: number) {
         this.balance.map(event => {
-            (event.account_id === account_id)
+            (event.id === id)
                 ? event.amount = event.amount + type * amount : event.amount
         });
     }
 
-    deposit(account_id: number, amount: number) {
-        if(this.find(account_id)) {
-            this.changeAmount(account_id, amount, 1);
+    deposit(id: number, amount: number) {
+        if(this.find(id)) {
+            this.changeAmount(id, amount, 1);
         } else {
-            this.balance.push({ 'account_id': account_id, 'amount': amount });
+            this.balance.push({ 'id': id, 'amount': amount });
         }
 
-        return { 'destination': this.find(account_id) };
+        return { 'destination': this.find(id) };
     }
     
-    withdraw(account_id: number, amount: number) {
-        this.changeAmount(account_id, amount, -1);
+    withdraw(id: number, amount: number) {
+        this.changeAmount(id, amount, -1);
 
-        return { 'origin': this.find(account_id) };
+        return { 'origin': this.find(id) };
     }
 
     transfer(origin: number, destination: number, amount: number) {
