@@ -1,6 +1,7 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
   <h1>Bank API</h1>
+  <a href="https://nestjs-bank-api.herokuapp.com/api/">Project Bank API LIVE</a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -24,8 +25,24 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
+### Reset
+POST /reset
+Reset the api status before useing it.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Balance
+GET /balance?account=<account_number>
+Get the balance of the account.
+
+### Event
+Support the following events deposit, withdraw, transfer.
+POST /event 
+send a body with the following fields:
+```{'type': 'deposit', 'destination': <amount>, 'amount': <account_number>}```
+```{"type":"withdraw", "origin":"200", "amount":10}```
+```{"type":"transfer", "origin":"100", "amount":15, "destination":"300"}```
+
+## Storage
+The storage is a simple in-memory database.
 
 ## Installation
 
@@ -39,30 +56,7 @@ $ yarn install
 # watch mode
 $ yarn run start:dev
 
-# production mode
-$ npm run start:prod
 ```
-
-## API Requirements
-### Reset
-POST /reset
-Reset the api status before useing it.
-
-### Balance
-GET /balance?account=<account_number>
-Get the balance of the account.
-
-### Event
-Support the following events deposit, withdraw, transfer.
-POST /event 
-send a body with the following fields:
-{'type': 'deposit', 'destination': <amount>, 'amount': <account_number>}
-{"type":"withdraw", "origin":"200", "amount":10}
-{"type":"transfer", "origin":"100", "amount":15, "destination":"300"}
-
-## Storage
-The storage is a simple in-memory database.
-
 ## License
 
 Nest is [MIT licensed](LICENSE).
