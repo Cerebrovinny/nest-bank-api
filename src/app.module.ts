@@ -7,12 +7,16 @@ import { EventModule } from './event/event.module';
 
 const routes: Routes = [
   {
-    path: '/v1',
+    path: '/',
     children: [
       {
         path: '/balance',
         module: BalanceModule
       },
+      {
+        path: '/event',
+        module: EventModule
+      }
     ]
   }
 ];
