@@ -1,4 +1,4 @@
 export interface Balance {
-    id: number;
+    id: string;
     amount: number;
 }

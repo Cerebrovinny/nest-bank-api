@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { BalanceModule } from './balance/balance.module';
 import { RouterModule, Routes } from 'nest-router'; 
 import { EventModule } from './event/event.module';
+import { ResetModule } from './reset/reset.module';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: '/event',
         module: EventModule
+      },
+      {
+        path: '/reset',
+        module: ResetModule
       }
     ]
   }
@@ -25,7 +30,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoutes(routes),
     BalanceModule,
-    EventModule
+    EventModule,
+    ResetModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -15,14 +15,14 @@ export class EventDto {
     description: 'Origin account id',
   })
   @IsNumber()
-  origin: number
+  origin: string
 
   @ApiPropertyOptional({
     name: 'destination',
     description: 'Desired account id',
   })
   @IsNumber()
-  destination: number
+  destination: string
 
   @ApiProperty({
     name: 'amount',
