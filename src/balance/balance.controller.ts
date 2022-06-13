@@ -14,7 +14,7 @@ export class BalanceController {
     public async findAccountBalance(@Query('account_id') account_id: string, @Res() res: Response) {
         const balance: Balance = this.balanceService.find(account_id);
         if(balance) {
-            res.status(HttpStatus.OK).json(balance.amount);
+            res.status(HttpStatus.OK).json(balance.balance);
         } else {
             res.status(HttpStatus.NOT_FOUND).json(0);
         }

@@ -23,15 +23,15 @@ export class BalanceService {
     changeAmount(id: string, amount: number, type: number) {
         this.balance.map(event => {
             (event.id === id)
-                ? event.amount = event.amount + type * amount : event.amount
+                ? event.balance = event.balance + type * amount : event.balance
         });
     }
 
-    deposit(id: string, amount: number) {
+    deposit(id: string, balance: number) {
         if(this.find(id)) {
-            this.changeAmount(id, amount, 1);
+            this.changeAmount(id, balance, 1);
         } else {
-            this.balance.push({ 'id': id, amount });
+            this.balance.push({ 'id': id, balance });
         }
 
         return { 'destination':  this.find(id) };
