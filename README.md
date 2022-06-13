@@ -1,5 +1,6 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <h1>Bank API</h1>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -29,44 +30,38 @@
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
 # watch mode
-$ npm run start:dev
+$ yarn run start:dev
 
 # production mode
 $ npm run start:prod
 ```
 
-## Test
+## API Requirements
+### Reset
+POST /reset
+Reset the api status before useing it.
 
-```bash
-# unit tests
-$ npm run test
+### Balance
+GET /balance?account=<account_number>
+Get the balance of the account.
 
-# e2e tests
-$ npm run test:e2e
+### Event
+Support the following events deposit, withdraw, transfer.
+POST /event 
+send a body with the following fields:
+{'type': 'deposit', 'destination': <amount>, 'amount': <account_number>}
+{"type":"withdraw", "origin":"200", "amount":10}
+{"type":"transfer", "origin":"100", "amount":15, "destination":"300"}
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Storage
+The storage is a simple in-memory database.
 
 ## License
 
