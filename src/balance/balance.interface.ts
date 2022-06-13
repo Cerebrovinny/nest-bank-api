@@ -1,4 +1,4 @@
 export interface Balance {
-    account_id: number;
+    id: number;
     amount: number;
 }
