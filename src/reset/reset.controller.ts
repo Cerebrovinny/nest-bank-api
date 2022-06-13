@@ -22,7 +22,9 @@ export class ResetController {
     @Post()
     @ApiOperation({ summary: 'Reset the balance' })
     public async reset(@Res() res: Response) {
-        await this.balanceService.reset();
-        res.status(HttpStatus.OK).json('OK');
+        this.balanceService.reset();
+        const ok: any = "OK";
+        const removeString = ok.replace(/"/g, '');
+        res.status(HttpStatus.OK).json(removeString);
     }
 }
