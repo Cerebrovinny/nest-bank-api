@@ -7,7 +7,8 @@ Patch,
 Query,
 UseGuards,
 Res,
-HttpStatus
+HttpStatus,
+HttpCode
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { Response } from 'express';
@@ -21,10 +22,9 @@ export class ResetController {
 
     @Post()
     @ApiOperation({ summary: 'Reset the balance' })
+    @HttpCode(200)
     public async reset(@Res() res: Response) {
         this.balanceService.reset();
-        const ok: any = "OK";
-        const removeString = ok.replace(/"/g, '');
-        res.status(HttpStatus.OK).json(removeString);
+        return res.status(200).send("OK")
     }
 }
